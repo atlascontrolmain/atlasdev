@@ -1,2 +1,4 @@
-a = ['texto con texto', 'texto solo']
-print (len(a))
+a = []
+print (type(a))
+a = 'hola como estas'
+print (type(a), a)
