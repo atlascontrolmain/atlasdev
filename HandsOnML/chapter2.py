@@ -2,6 +2,7 @@ from pathlib import Path
 import pandas as pd
 import tarfile
 import urllib.request
+import matplotlib.pyplot as plt
 
 def load_housing_data():
         tarball_path = Path("datasets/housing.tgz")
@@ -14,5 +15,7 @@ def load_housing_data():
         return pd.read_csv(Path("datasets/housing/housing.csv"))
 
 housing = load_housing_data()
-
-housing.head()
+print(housing.head())
+housing.hist(bins=50, figsize=(12, 8))
+plt.show()
+print(housing.info())
