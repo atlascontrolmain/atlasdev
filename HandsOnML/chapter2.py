@@ -58,3 +58,9 @@ housing_with_id=housing.reset_index()
 # llama al split -> apenas calcula los hashes y se separa
 train_set, test_set = split_data_with_id_hash(housing_with_id,0.2,'index')
 print(len(train_set),len(test_set))
+print (housing.info())
+
+# usar este forma de asignación de ID nos obliga que toda 
+# la información nueva que se desee agregar vaya al final 
+# del dataset y no se hagan inserciones en posiciones diferentes 
+# del final --> si esto no es posible debemos cambiar el método de asignación de ID
