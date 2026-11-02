@@ -5,6 +5,7 @@ import urllib.request
 import matplotlib.pyplot as plt
 import numpy as np
 from zlib import crc32
+from sklearn.model_selection import train_test_split
 def load_housing_data():
         tarball_path = Path("datasets/housing.tgz")
         if not tarball_path.is_file():
@@ -21,31 +22,11 @@ housing = load_housing_data()
 #plt.show()
 #print(housing.info())
 
-# conjunto de datos prueba
-# definir funcion para crear test_set
-def shuffle_and_split_data(data, test_ratio): #--> test_ratio es un valor por definir
-     # mixeo y spliteo aletorio de datos
-     # tamaño del conjunto de prueba
-     # indices de prueba
-     # indices de entrenamiento
-     # se retorna la copia del conjunto de datos que se guardaron en un nuevo data frame
-     shuffled_indices=np.random.permutation(len(data))
-     test_size=int(len(data)*test_ratio)
-     test_indices=shuffled_indices[:test_size]
-     train_indices=shuffled_indices[test_size:]
+#haciendo spliteo de datos -> conjunto de prueba y conjunto de entrenamiento
+train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
+print (train_set,'Conjunto de ENTRENAMIENTO 0.8') #SOLO PARA PRUEBA Y VISUALIZACIÓN DE ORDEN DE DATOS
+print (test_set,'Conjunto de PRUEBA 0.2') #SOLO PARA PRUEBA Y VISUALIZACIÓN DE ORDEN DE DATOS
 
-     print(data.iloc[train_indices], 'Conjunto Entrenamiento') # solo prueba, ignorar
-     print(data.iloc[test_indices], 'Conjunto Prueba') # solo prueba, ignorar
-
-     return data.iloc[train_indices],data.iloc[test_indices]
-
-# antes de llamar al conjunto de prueba debemos establecer un numero de arranque
-# marca secuencia de numeros generados como "fija"
-# esto evita un overfitting futuro
-np.random.seed(42)
-# versión anterior (nombres invertidos y no son índices sino DataFrames):
-#test_indices,train_indices=shuffle_and_split_data(housing,0.2)
-train_set,test_set=shuffle_and_split_data(housing,0.2)
 
 # asignar hash y definir valor de umbral
 def is_id_in_test_set(identifier, test_ratio):
