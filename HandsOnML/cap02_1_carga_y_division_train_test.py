@@ -16,7 +16,7 @@ def load_housing_data():
         return pd.read_csv(Path("datasets/housing/housing.csv"))
 
 housing = load_housing_data()
-print(housing.head())
+#print(housing.head())
 #housing.hist(bins=50, figsize=(12, 8)) #--> sirve para saber las limitaciones con base en unidades registradas
 #plt.show()
 #print(housing.info())
@@ -33,6 +33,10 @@ def shuffle_and_split_data(data, test_ratio): #--> test_ratio es un valor por de
      test_size=int(len(data)*test_ratio)
      test_indices=shuffled_indices[:test_size]
      train_indices=shuffled_indices[test_size:]
+
+     print(data.iloc[train_indices], 'Conjunto Entrenamiento') # solo prueba, ignorar
+     print(data.iloc[test_indices], 'Conjunto Prueba') # solo prueba, ignorar
+
      return data.iloc[train_indices],data.iloc[test_indices]
 
 # antes de llamar al conjunto de prueba debemos establecer un numero de arranque
@@ -40,7 +44,6 @@ def shuffle_and_split_data(data, test_ratio): #--> test_ratio es un valor por de
 # esto evita un overfitting futuro
 np.random.seed(42)
 test_indices,train_indices=shuffle_and_split_data(housing,0.2)
-print (len(test_indices),len(train_indices))
 
 # asignar hash y definir valor de umbral
 def is_id_in_test_set(identifier, test_ratio):
@@ -58,7 +61,6 @@ housing_with_id=housing.reset_index()
 # llama al split -> apenas calcula los hashes y se separa
 train_set, test_set = split_data_with_id_hash(housing_with_id,0.2,'index')
 print(len(train_set),len(test_set))
-print (housing.info())
 
 # usar este forma de asignación de ID nos obliga que toda 
 # la información nueva que se desee agregar vaya al final 
