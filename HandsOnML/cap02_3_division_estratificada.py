@@ -77,4 +77,4 @@ def split_estratificado_comparativo():
     strat_train_set_x, strat_test_set_y = train_test_split(
         housing, test_size=0.2, stratify=housing["income_cat"], random_state=42)
     return strat_train_set_x, strat_test_set_y
-#print (split_estratificado_comparativo())
+print (split_estratificado_comparativo())

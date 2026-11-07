@@ -43,7 +43,7 @@ def shuffle_and_split_data(data, test_ratio): #--> test_ratio es un valor por de
 # marca secuencia de numeros generados como "fija"
 # esto evita un overfitting futuro
 np.random.seed(42)
-test_indices,train_indices=shuffle_and_split_data(housing,0.2)
+train_set, test_set = shuffle_and_split_data(housing, 0.2) # corregido por variables que estaban invertidas
 
 # asignar hash y definir valor de umbral
 def is_id_in_test_set(identifier, test_ratio):

@@ -49,3 +49,5 @@ print(len(train_set),len(test_set))
 # la información nueva que se desee agregar vaya al final 
 # del dataset y no se hagan inserciones en posiciones diferentes 
 # del final --> si esto no es posible debemos cambiar el método de asignación de ID
+
+# CONTINUAMOS CON MUESTREO ESTRATIFICADO #
