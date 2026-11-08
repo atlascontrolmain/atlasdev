@@ -1,3 +1,6 @@
 __pycache__/
 .envs/
 .DS_Store
+atlas_preparacion/
+.env
+.ipynb_checkpoints/
