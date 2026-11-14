@@ -41,7 +41,7 @@ housing=strat_train_set.copy()
 corr_matrix=housing.corr(numeric_only=True)
 print(corr_matrix['median_house_value'].sort_values(ascending=False))
 
-#Otra forma de obtener r con Pandas
+#scatter nos permite ver gráficos de la relación entre pares de atributo
 attributes=['median_house_value','median_income','total_rooms','housing_median_age']
 scatter_matrix(housing[attributes],figsize=(12,8))
 plt.show()
