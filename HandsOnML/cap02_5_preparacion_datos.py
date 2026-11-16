@@ -37,11 +37,6 @@ housing=strat_train_set.copy()
 
 #Solo trabajaremos con el train set para evitar data snooping bias
 
-#Revisando r de train set usando corr()
-#cuánto correlaciona cada atributo con el valor mediano de la vivienda
-corr_matrix=housing.corr(numeric_only=True)
-print(corr_matrix['median_house_value'].sort_values(ascending=False))
-
 housing=strat_train_set.drop('median_house_value',axis=1)
 housing_labels=strat_train_set['median_house_value'].copy()
 
@@ -59,9 +54,9 @@ housing_labels=strat_train_set['median_house_value'].copy()
 
 imputer = SimpleImputer(strategy="median")
 housing_num = housing.select_dtypes(include=[np.number]) #elimina ocean_proximity
-imputer.fit(housing_num)
-print(imputer.statistics_)
-print(housing_num.median().values)
+imputer.fit(housing_num) #ajuste
+print(imputer.statistics_)#guarda el imputer en statics_
+print(housing_num.median().values)#aplica el imputer median a todas las columnas para evitar los valores null
 X = imputer.transform(housing_num)
 housing_tr = pd.DataFrame(X, columns=housing_num.columns,
                           index=housing_num.index)
