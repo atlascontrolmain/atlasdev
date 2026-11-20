@@ -85,13 +85,18 @@ model.fit(housing[["median_income"]], scaled_labels) # ajustando datos de ingres
 some_new_data = housing[["median_income"]].iloc[:5] # 5 distritos con su respectivo "ingreso medio $"
 # pretendemos pensar que son datos nuevos (esto es una simulación de predicción de precio medio de casa)
 # partir de la median_income
-print(some_new_data)#apoyo visual
+print('N Distrito + Ingreso medio (pd.cut)'
+      ,some_new_data)#apoyo visual
 
 scaled_predictions = model.predict(some_new_data)#retorno del precio medio 
 #de las casas de los 5 distritos pero escalados aun no en usd
-print(scaled_predictions)#apoyo visual
+print('Precio medio por casa escalado con StandardScaler',
+      scaled_predictions)#apoyo visual
 
-predictions = target_scaler.inverse_transform(scaled_predictions)#transformación de valores escalados a dolares
+predictions = target_scaler.inverse_transform(scaled_predictions)#transformación de valores 
+#escalados a dolares
 print('5 distritos, ' \
 'cada valor es el precio medio de las casas por distrito. ' \
 'Predicción usando median_income',predictions)
+
+#vamos en la pag 129
